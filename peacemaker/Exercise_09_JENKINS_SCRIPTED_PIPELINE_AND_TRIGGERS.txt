@@ -1,0 +1,101 @@
+EXERCISE 9 - JENKINS SCRIPTED PIPELINE AND TRIGGERS
+============================================================
+
+TASK 1 - BUILD PERIODICALLY
+1. Jenkins job -> Configure -> Build Triggers.
+2. Enable Build periodically.
+3. Enter:
+
+H 18 * * *
+
+TASK 2 - POLL SCM
+1. Configure -> Build Triggers -> Poll SCM.
+2. Enter:
+
+H/5 * * * *
+
+TASK 3 - SCRIPTED PIPELINE
+1. Jenkins -> New Item.
+2. Name: Maven_Script_Pipeline.
+3. Select Pipeline -> OK.
+4. Definition -> Pipeline script.
+5. Paste:
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'YOUR_GITHUB_URL'
+            }
+        }
+        stage('Clean') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Compile') {
+            steps {
+                bat 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+    }
+}
+
+6. Replace YOUR_GITHUB_URL.
+7. Save -> Build Now -> Console Output.
+
+TASK 4 - GITHUB WEBHOOK
+1. Start ngrok in CMD.
+
+ngrok http 8080
+
+2. Copy the HTTPS forwarding URL.
+3. GitHub -> Repository -> Settings -> Webhooks -> Add webhook.
+4. Payload URL:
+
+https://YOUR_NGROK_URL/github-webhook/
+
+5. Content type: application/json
+6. Select Just the push event.
+7. Add webhook.
+8. Jenkins job -> Configure -> Build Triggers.
+9. Enable GitHub hook trigger for GITScm polling.
+10. Save.
+
+TEST WEBHOOK
+git add .
+git commit -m "Webhook test"
+git push origin main
+
+TASK 5 - EMAIL NOTIFICATION
+1. Google Account -> Security -> Enable 2-Step Verification.
+2. Generate Google App Password.
+3. Jenkins -> Manage Jenkins -> Plugins.
+4. Install Email Extension Plugin.
+5. Manage Jenkins -> Configure System.
+6. Configure SMTP:
+
+SMTP Server: smtp.gmail.com
+SMTP Port: 465
+Username: YOUR_GMAIL
+Password: YOUR_APP_PASSWORD
+SSL: Enabled
+
+7. Configure job -> Post-build Actions.
+8. Add Editable Email Notification.
+9. Enter recipient email.
+10. Add Success and Failure triggers.
+11. Save.
+
+============================================================

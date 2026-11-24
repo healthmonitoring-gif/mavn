@@ -1,0 +1,135 @@
+EXERCISE 2 - GIT LOCAL AND REMOTE COMMANDS
+============================================================
+
+TASK 1 - PUSH MULTI-FOLDER PROJECT TO PRIVATE GITHUB REPOSITORY
+
+1. Sign in to https://github.com
+2. New repository -> enter name -> select Private -> Create repository.
+3. Open Git Bash in the project root.
+
+cd /c/Users/YOUR_NAME/Desktop/PROJECT
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+git remote -v
+git push -u origin main
+
+TASK 2 - GIT COMMANDS
+
+GIT CONFIGURATION
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --list
+
+REPOSITORY MANAGEMENT
+git init
+git clone REPOSITORY_URL
+git remote -v
+git remote add origin REPOSITORY_URL
+git push origin main
+git pull origin main
+git remote remove origin
+git remote rename origin upstream
+git fetch origin
+git remote set-url origin NEW_REPOSITORY_URL
+git remote show origin
+
+STAGING AND COMMITTING
+git status
+git add filename.txt
+git add .
+git commit -m "Commit message"
+
+BRANCHING AND MERGING
+git branch
+git branch -a
+git branch feature
+git branch -d feature
+git branch -r
+git checkout main
+git checkout -b feature
+git remote prune origin
+git fetch origin feature
+git push --set-upstream origin feature
+git checkout main
+git merge feature
+git fetch origin
+git rebase origin/main
+
+UNDOING CHANGES
+git reset filename.txt
+git reset --hard
+git revert HEAD
+git restore filename.txt
+git restore --staged filename.txt
+
+VIEWING HISTORY
+git log
+git log --oneline
+git diff
+git show HEAD
+
+CORRECT LAST COMMIT MESSAGE
+git commit --amend -m "Corrected commit message"
+
+RECOVER DELETED BRANCH
+git reflog
+git checkout -b feature-ui COMMIT_HASH
+
+FETCH WITHOUT MERGING
+git fetch origin
+
+REMOVE SENSITIVE FILE FROM HISTORY (filename: secrets.txt)
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch secrets.txt" --prune-empty --tag-name-filter cat -- --all
+
+RESOLVE MERGE CONFLICT
+git status
+[Open conflicting file and remove conflict markers; save file]
+git add .
+git commit -m "Resolved merge conflict"
+
+CREATE .gitignore
+touch .gitignore
+[Add patterns inside .gitignore]
+*.log
+secret_file.txt
+temp/
+*.bak
+git add .gitignore
+git commit -m "Added gitignore"
+
+CHECK WHO MODIFIED A LINE
+git blame filename.txt
+
+GIT STASH
+git stash
+git switch another-branch
+git switch main
+git stash apply
+
+CHECK MERGED BRANCHES
+git branch --merged
+
+DELETE MULTIPLE BRANCHES
+git branch -d branch1 branch2 branch3
+
+TASK 3 - SCENARIO COMMANDS
+git restore filename.txt
+git restore --staged filename.txt
+git commit --amend -m "Correct message"
+git log --oneline
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git diff
+git switch feature/login
+git reflog
+git checkout -b feature-ui COMMIT_HASH
+git fetch origin
+
+============================================================

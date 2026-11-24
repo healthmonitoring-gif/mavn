@@ -1,0 +1,71 @@
+EXERCISE 3 - COLLABORATIVE CODING USING GIT
+============================================================
+
+TASK 1 - CREATE ORGANIZATION
+1. GitHub -> New organization -> Create free organization.
+2. Enter organization details.
+3. Add members and send invitations.
+4. Members accept invitations.
+5. Organization Settings -> Member privileges -> Base permissions -> Write.
+6. Create a repository inside the organization.
+
+TASK 2 - COLLABORATOR 1
+1. Open repository -> Settings -> Collaborators.
+2. Add people -> invite Collaborator 2.
+3. Collaborator 2 accepts invitation.
+
+TASK 3 - COLLABORATOR 2
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git clone REPOSITORY_URL
+cd REPOSITORY_NAME
+git checkout -b feature/login
+git add .
+git commit -m "Added login feature"
+git push origin feature/login
+
+4. GitHub -> Pull requests -> New pull request -> Create pull request.
+5. Repository owner reviews and merges pull request.
+
+TASK 4 - UPDATE FEATURE BRANCH
+git checkout main
+git pull origin main
+git checkout feature/login
+git merge main
+
+TASK 5 - FORK REPOSITORY
+1. Open public GitHub repository.
+2. Click Fork.
+3. Clone your fork.
+
+git clone FORK_REPOSITORY_URL
+cd REPOSITORY_NAME
+git add .
+git commit -m "Updated project"
+git push origin main
+
+4. GitHub -> Pull requests -> New pull request -> Create pull request.
+
+TASK 6 - RESOLVE CONFLICT
+git pull origin main
+git status
+[Open conflicting file, resolve conflict markers and save]
+git add .
+git commit -m "Resolved conflict"
+git push origin main
+
+TASK 7 - CREATE AND APPLY PATCH
+[On contributor system]
+git format-patch -1 COMMIT_HASH
+
+[On receiver system]
+git apply PATCH_FILE.patch
+git status
+git add .
+git commit -m "Applied patch"
+git push origin main
+
+[Alternative for format-patch files]
+git am PATCH_FILE.patch
+
+============================================================

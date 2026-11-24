@@ -1,0 +1,39 @@
+EXERCISE 11 - JENKINS CI/CD USING WEBHOOKS AND EMAIL
+============================================================
+
+1. Start Jenkins: http://localhost:8080
+2. Start ngrok:
+
+ngrok http 8080
+
+3. GitHub -> Repository -> Settings -> Webhooks -> Add webhook.
+4. Payload URL:
+
+https://YOUR_NGROK_URL/github-webhook/
+
+5. Content type: application/json.
+6. Select Just the push event.
+7. Add webhook.
+8. Jenkins job -> Configure -> Build Triggers.
+9. Enable GitHub hook trigger for GITScm polling.
+10. Save.
+
+TEST
+git add .
+git commit -m "Testing webhook"
+git push origin main
+
+EMAIL
+1. Generate Google App Password.
+2. Install Jenkins Email Extension Plugin.
+3. Manage Jenkins -> Configure System.
+4. SMTP server: smtp.gmail.com
+5. Port: 465
+6. Enable SSL and authentication.
+7. Enter Gmail and App Password.
+8. Job -> Configure -> Post-build Actions.
+9. Add Editable Email Notification.
+10. Add recipient and Success/Failure triggers.
+11. Save.
+
+============================================================

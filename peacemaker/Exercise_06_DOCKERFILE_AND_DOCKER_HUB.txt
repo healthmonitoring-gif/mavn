@@ -1,0 +1,41 @@
+EXERCISE 6 - DOCKERFILE AND DOCKER HUB
+============================================================
+
+1. Create project folder.
+
+mkdir C:\\DockerProjects\\myapp
+cd /d C:\\DockerProjects\\myapp
+
+2. Create index.html in this folder.
+3. Create Dockerfile with:
+
+FROM nginx:latest
+COPY . /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+4. Build and run.
+
+docker build -t myapp .
+docker images
+docker run -d --name mycontainer -p 8080:80 myapp
+
+5. Open http://localhost:8080
+
+6. Push to Docker Hub.
+
+docker login
+docker tag myapp USERNAME/myapp
+docker push USERNAME/myapp
+
+7. On another system.
+
+docker pull USERNAME/myapp
+docker run -d --name mycontainer -p 8080:80 USERNAME/myapp
+
+8. Cleanup.
+
+docker stop mycontainer
+docker rm mycontainer
+
+============================================================

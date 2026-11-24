@@ -1,0 +1,67 @@
+EXERCISE 10 - MINIKUBE, KUBERNETES AND NAGIOS
+============================================================
+
+TASK 1 - START MINIKUBE
+minikube start --driver=docker
+minikube status
+kubectl version --client
+kubectl get nodes
+
+TASK 2 - CREATE NGINX DEPLOYMENT
+kubectl create deployment mynginx --image=nginx
+kubectl get deployments
+kubectl get pods
+kubectl describe pods
+kubectl expose deployment mynginx --type=NodePort --port=80
+kubectl get services
+kubectl scale deployment mynginx --replicas=4
+kubectl get pods
+minikube service mynginx --url
+
+TASK 3 - ACCESS NGINX
+kubectl port-forward svc/mynginx 8081:80
+
+Open http://localhost:8081
+
+TASK 4 - KUBERNETES COMMANDS
+kubectl get pods
+kubectl get pods -A
+kubectl get deployments
+kubectl get services
+kubectl describe pod POD_NAME
+kubectl logs POD_NAME
+kubectl logs -f POD_NAME
+kubectl exec -it POD_NAME -- sh
+kubectl get events
+kubectl rollout status deployment/mynginx
+kubectl rollout history deployment/mynginx
+kubectl rollout undo deployment/mynginx
+
+TASK 5 - CLEANUP
+kubectl delete deployment mynginx
+kubectl delete service mynginx
+minikube stop
+minikube delete
+
+TASK 6 - NAGIOS USING DOCKER
+docker pull jasonrivers/nagios:latest
+docker run --name nagiosdemo -d -p 8888:80 jasonrivers/nagios:latest
+docker ps
+docker logs nagiosdemo
+
+Open http://localhost:8888
+
+Login:
+Username: nagiosadmin
+Password: nagios
+
+TASK 7 - NAGIOS COMMANDS
+docker ps -a
+docker start nagiosdemo
+docker stop nagiosdemo
+docker restart nagiosdemo
+docker logs -f nagiosdemo
+docker inspect nagiosdemo
+docker rm nagiosdemo
+
+============================================================

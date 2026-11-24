@@ -1,0 +1,81 @@
+EXERCISE 5 - DOCKER CLI COMMANDS
+============================================================
+
+TASK 1 - REDIS CONTAINER
+docker pull redis
+docker run --name my-redis -d redis
+docker ps
+docker exec -it my-redis redis-cli
+
+[Inside Redis CLI]
+SET name "Alice"
+GET name
+exit
+
+[Back in CMD]
+docker stop my-redis
+docker start my-redis
+docker stop my-redis
+docker rm my-redis
+docker rmi redis
+
+TASK 2 - DOCKERFILE
+mkdir C:\\DockerProjects\\Redis
+cd /d C:\\DockerProjects\\Redis
+
+[Create a file named Dockerfile with:]
+FROM redis:latest
+CMD ["redis-server"]
+
+[Run]
+docker build -t redisnew .
+docker run --name myredisnew -d redisnew
+docker ps
+docker login
+docker tag redisnew USERNAME/redis1
+docker push USERNAME/redis1
+docker pull USERNAME/redis1
+docker run --name myredis -d USERNAME/redis1
+docker exec -it myredis redis-cli
+
+[Inside Redis CLI]
+SET name "Abcdef"
+GET name
+exit
+
+[Cleanup]
+docker stop myredis
+docker rm myredis
+docker rmi USERNAME/redis1
+
+TASK 3 - COMMON DOCKER COMMANDS
+docker images
+docker ps -a
+docker stop CONTAINER_NAME
+docker start CONTAINER_NAME
+docker restart CONTAINER_NAME
+docker rm CONTAINER_NAME
+docker rmi IMAGE_NAME
+docker logs CONTAINER_NAME
+docker inspect CONTAINER_NAME
+docker stats
+docker network ls
+docker volume ls
+docker system df
+docker system prune
+
+PORT MAPPING
+docker run -d --name web_app -p 8080:80 nginx
+
+ENTER CONTAINER
+docker exec -it web_app sh
+
+TAG AND PUSH
+docker tag IMAGE_NAME USERNAME/IMAGE_NAME
+docker push USERNAME/IMAGE_NAME
+
+SAVE AND LOAD IMAGE
+docker save -o image.tar IMAGE_NAME
+docker load -i image.tar
+
+============================================================

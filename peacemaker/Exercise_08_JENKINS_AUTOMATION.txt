@@ -1,0 +1,31 @@
+EXERCISE 8 - JENKINS AUTOMATION
+============================================================
+
+1. Open http://localhost:8080
+2. Login to Jenkins.
+3. New Item -> MavenJava_Build -> Freestyle Project.
+4. Source Code Management -> Git.
+5. Enter GitHub repository URL and branch */main.
+6. Build Steps -> Invoke top-level Maven targets.
+7. Select configured Maven installation.
+8. Goals: clean install
+9. Post-build Actions -> Archive artifacts: **/*
+10. Save -> Build Now -> Console Output.
+
+CREATE MAVEN TEST JOB
+1. New Item -> MavenJava_Test -> Freestyle Project.
+2. Configure Git repository if required.
+3. Build step -> Invoke top-level Maven targets.
+4. Goals: test
+5. Post-build -> Archive artifacts: **/*
+6. Save -> Build Now.
+
+CREATE MAVEN WEB JOB
+1. New Item -> MavenWeb_Build -> Freestyle Project.
+2. Configure Git repository URL and branch */main.
+3. Build step -> Invoke top-level Maven targets.
+4. Goals: clean package
+5. Post-build -> Archive artifacts: **/*.war
+6. Save -> Build Now.
+
+============================================================

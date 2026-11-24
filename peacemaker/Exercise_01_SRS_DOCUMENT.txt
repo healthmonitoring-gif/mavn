@@ -1,0 +1,14 @@
+EXERCISE 1 - SRS DOCUMENT
+============================================================
+
+1. Open MS Word.
+2. Create a document with:
+   Abstract
+   Functional Requirements
+   Non-Functional Requirements
+   User Identification
+   Workflow of Each User
+   Use Cases
+3. Save as SRS.docx.
+
+============================================================

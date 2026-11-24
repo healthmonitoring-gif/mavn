@@ -1,0 +1,69 @@
+EXERCISE 4 - MAVEN JAVA AND WEB APPLICATIONS
+============================================================
+
+TASK 1 - CREATE MAVEN JAVA PROJECT
+1. Eclipse -> File -> New -> Maven Project.
+2. Select maven-archetype-quickstart.
+3. Enter Group ID: com.example
+4. Enter Artifact ID: my-maven-project.
+5. Finish.
+6. Open CMD in project directory.
+
+mvn -version
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn install
+
+RUN JAR
+java -cp target/my-maven-project-1.0-SNAPSHOT.jar com.example.App
+
+TASK 2 - CREATE MAVEN WEB PROJECT
+1. Eclipse -> File -> New -> Maven Project.
+2. Select maven-archetype-webapp.
+3. Group ID: com.example
+4. Artifact ID: my-web-app
+5. Finish.
+6. Configure dependencies and Tomcat in the project.
+7. Open CMD in project directory.
+
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn install
+
+WAR FILE
+target/my-web-app-1.0-SNAPSHOT.war
+
+TASK 3 - DEPENDENCIES
+mvn dependency:tree
+mvn dependency:resolve
+
+TASK 4 - TEST
+mvn test
+
+TASK 5 - BUILD EXECUTABLE JAR
+mvn clean package
+java -jar target/myapp.jar
+
+TASK 6 - BUILD WAR
+mvn clean package
+
+COPY WAR TO TOMCAT
+copy target\\my-web-app-1.0-SNAPSHOT.war C:\\apache-tomcat\\webapps\\
+
+START TOMCAT (CMD)
+cd /d C:\\apache-tomcat\\bin
+startup.bat
+
+OPEN
+http://localhost:8080/my-web-app-1.0-SNAPSHOT/
+
+OTHER MAVEN COMMANDS
+mvn clean install -e
+mvn clean install -DskipTests
+mvn site
+
+============================================================
